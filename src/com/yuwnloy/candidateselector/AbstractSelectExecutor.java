@@ -1,6 +1,8 @@
 package com.yuwnloy.candidateselector;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import com.yuwnloy.candidateselector.IWorker.Status;
 import com.yuwnloy.candidateselector.exceptions.ExecutorException;
@@ -29,6 +31,17 @@ public abstract class AbstractSelectExecutor<T> {
 		//this.candidateList.add(candidate);
 		CandidateHose<T> hose = new CandidateHose<T>(candidate,weight);
 		this.candidateList.add(hose);
+		//sort
+		 Collections.sort(candidateList, new Comparator<CandidateHose<T>>() {
+			@Override
+			public int compare(CandidateHose<T> o1, CandidateHose<T> o2) {
+				if(o1.getWeight()<o2.getWeight())
+					return 1;
+				else if(o1.getWeight()>o2.getWeight())
+					return -1;
+				return 0;
+			}
+		 });
 	}
 	
 	
