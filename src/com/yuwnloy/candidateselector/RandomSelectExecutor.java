@@ -12,7 +12,7 @@ public class RandomSelectExecutor<T> extends SequenceSelectExecutor<T>{
 		int count = this.getCandidateCount();
 		Random random = new Random();
 		random.setSeed(System.currentTimeMillis());
-		this.setCurrentIndex(random.nextInt(count));
+		this.setStartIndex(random.nextInt(count));
 		return super.selectAndDo(worker);
 	}
 }
